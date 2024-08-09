@@ -28,6 +28,7 @@ html, body {
 .main-style-left {
     float: left;
     width: 40%;
+    height: 25%;
 }
 .main-style-right {
     float: left;
@@ -38,9 +39,9 @@ html, body {
     background-color: #b5bfc0;
     width: 100%;
 }
-.footer-style-socials {
-    display:block;
-    margin-right: 20%;
+.footer-style-socials a {
+    display:flex;
+    margin: 0 35%;
+    height: 25px;
     padding-right: 20%;
-    padding-left: 20%;
 }
