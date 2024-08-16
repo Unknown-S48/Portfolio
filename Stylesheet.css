@@ -7,7 +7,7 @@ Colors
 /*Globle Styles*/
 html, body {
     font-family: Montserrat, sans-serif;
-    background-color: #333;
+    background-color: #222;
     margin: 0;
     padding: 0 5%;
 }
@@ -15,17 +15,40 @@ html, body {
 .header {
     border-left: cyan solid 1px;
     border-bottom: cyan solid 1px;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
 }
-.header-img {
-    height: 5px;
-    width: 5px;
+.header-img img{
+    height: 50px;
+    width: 50px;
 }
 .header-title {
     font-size: 68px;
+    padding: 1% 1%;
 }
 .header-links {
-
 }
 /*Main Styles*/
-
+.main {
+    background-color: #333;
+}
+.main-skills {
+    background-color: #333;
+    float: left;
+    width: 68%;
+    border-left: #111 solid 3px;
+}
+.main-photo {
+    background-color: #333;
+    border-right: #111 solid 3px;
+    height:auto;
+}
+.main-photo img {
+    padding: 1% 2%;
+}
+.main-downlaod {
+    
+}
 /*Footer Styles*/
