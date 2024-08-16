@@ -46,7 +46,7 @@ html, body {
     height:auto;
 }
 .main-photo img {
-    padding: 1% 2%;
+    padding: 1% 2% 0;
 }
 .main-downlaod {
     
