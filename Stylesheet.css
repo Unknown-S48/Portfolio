@@ -7,12 +7,25 @@ Colors
 /*Globle Styles*/
 html, body {
     font-family: Montserrat, sans-serif;
-    background-color: #ffffff;
+    background-color: #333;
     margin: 0;
-    padding: 0;
+    padding: 0 5%;
 }
 /*Header Styles*/
+.header {
+    border-left: cyan solid 1px;
+    border-bottom: cyan solid 1px;
+}
+.header-img {
+    height: 5px;
+    width: 5px;
+}
+.header-title {
+    font-size: 68px;
+}
+.header-links {
 
+}
 /*Main Styles*/
 
 /*Footer Styles*/
