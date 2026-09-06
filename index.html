@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wian Sandenberg · Software Engineer</title>
+
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /*CSS VARIABLES (Light & Dark Mode) with complementary colors*/
+        :root {
+            /* Dark mode (default) */
+            --bg-body: #0e1622;
+            --bg-container: #18222f;
+            --bg-card: #1d2a3b;
+            --bg-chip: #1f3145;
+            --bg-hover: #2a405a;
+            --bg-cta: #1d2a3b;
+            --bg-cta-gradient: #16212f;
+            --bg-il: #1a273a;
+
+            --text-primary: #edf2f9;
+            --text-secondary: #d5e2f2;
+            --text-muted: #aac5f0;
+            --text-dark: #0e1622;
+
+            --border-color: #2a3748;
+            --border-light: #33475e;
+            --border-hover: #6ea8fe;
+
+            /* Primary accent: Blue */
+            --accent: #6ea8fe;
+            --accent-hover: #8bbaff;
+            --accent-glow: rgba(110, 168, 254, 0.35);
+
+            /* Complementary accent: Coral/Orange for highlights */
+            --accent-complement: #ff8a6f;
+            --accent-complement-hover: #ffa38c;
+            --accent-complement-glow: rgba(255, 138, 111, 0.3);
+
+            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-container: 0 20px 40px -12px rgba(0, 0, 0, 0.7);
+
+            --transition: all 0.3s ease;
+        }
+
+        /* Light mode overrides */
+        [data-theme="light"] {
+            --bg-body: #f0f4f9;
+            --bg-container: #ffffff;
+            --bg-card: #f8faff;
+            --bg-chip: #e8edf5;
+            --bg-hover: #dce4f0;
+            --bg-cta: #eef3fa;
+            --bg-cta-gradient: #e4eaf2;
+            --bg-il: #eef3fa;
+
+            --text-primary: #1a2a3a;
+            --text-secondary: #2c4056;
+            --text-muted: #3a5a7a;
+            --text-dark: #0e1622;
+
+            --border-color: #d0dce8;
+            --border-light: #b8c8d8;
+            --border-hover: #4a8fd4;
+
+            --accent: #2a7de1;
+            --accent-hover: #4a8fd4;
+            --accent-glow: rgba(42, 125, 225, 0.25);
+
+            --accent-complement: #e0684a;
+            --accent-complement-hover: #e88268;
+            --accent-complement-glow: rgba(224, 104, 74, 0.2);
+
+            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-container: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /*GLOBAL RESET*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-body);
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: var(--bg-container);
+            border-radius: 32px;
+            box-shadow: var(--shadow-container);
+            padding: 2.5rem 2.8rem;
+            border: 1px solid var(--border-color);
+            animation: fadeInUp 0.9s ease-out;
+            transition: var(--transition);
+        }
+
+        /*ANIMATIONS*/
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 8px rgba(110, 168, 254, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(110, 168, 254, 0.7); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .fade-up    { animation: fadeInUp 0.8s ease-out both; }
+        .slide-left { animation: slideInLeft 0.8s ease-out both; }
+        .slide-right{ animation: slideInRight 0.8s ease-out both; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /*HEADER*/
+        .profile-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .name-title {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .profile-photo:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 40px rgba(110, 168, 254, 0.6);
+        }
+
+        .name-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+        .name-text h1 span {
+            color: var(--accent);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--bg-chip);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-top: 0.3rem;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 0.2rem 0 0 0;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Contact - fixed alignment */
+        .contact-brief {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.3rem;
+            min-width: 260px;
+        }
+        .contact-brief a,
+        .contact-brief .location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .contact-brief a i,
+        .contact-brief .location i {
+            color: var(--accent);
+            width: 1.4rem;
+            font-size: 1.1rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .contact-brief a:hover {
+            color: var(--accent-hover);
+        }
+        .location {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .header-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /*BUTTONS*/
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent);
+            color: var(--text-dark);
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            animation: pulseGlow 2.5s infinite;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: scale(1.04);
+            box-shadow: 0 0 25px rgba(110, 168, 254, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent-complement);
+            color: var(--text-dark);
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .btn-secondary:hover {
+            background: var(--accent-complement-hover);
+            transform: scale(1.04);
+            box-shadow: 0 0 25px var(--accent-complement-glow);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            color: var(--accent);
+            padding: 0.6rem 1.6rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid var(--accent);
+            transition: var(--transition);
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--text-dark);
+            transform: scale(1.04);
+        }
+
+        /*THEME TOGGLE*/
+        .theme-toggle {
+            background: var(--bg-chip);
+            border: 1px solid var(--border-light);
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            background: var(--bg-hover);
+        }
+        .theme-toggle i {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .header-top-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+        }
+
+        /*SUMMARY CARD*/
+        .summary-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid var(--accent-complement);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+        .summary-card p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /*TWO-COLUMN LAYOUT*/
+        .two-col {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /*SECTION TITLES*/
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.4rem;
+            transition: var(--transition);
+        }
+        .section-title i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            width: 2rem;
+        }
+
+        /*EXPERIENCE*/
+        .exp-item {
+            margin-bottom: 1.8rem;
+        }
+        .exp-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+        .exp-head h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+        .exp-head .org {
+            font-weight: 500;
+            color: var(--accent-complement);
+        }
+        .exp-head .date {
+            font-size: 0.85rem;
+            background: var(--bg-chip);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        .exp-desc {
+            margin-top: 0.4rem;
+            padding-left: 0.2rem;
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            list-style: none;
+        }
+        .exp-desc li {
+            margin-bottom: 0.3rem;
+            display: flex;
+            gap: 0.6rem;
+        }
+        .exp-desc li i {
+            color: var(--accent);
+            font-size: 0.7rem;
+            margin-top: 0.45rem;
+            width: 1rem;
+        }
+
+        /*PROJECTS*/
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            border-color: var(--accent-complement);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .project-card .project-icon {
+            font-size: 2rem;
+            color: var(--accent-complement);
+            margin-bottom: 0.3rem;
+        }
+        .project-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+        }
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.2s;
+        }
+        .project-link:hover {
+            gap: 0.7rem;
+            color: var(--accent-hover);
+        }
+
+        /*EDUCATION*/
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .edu-item:last-child {
+            border-bottom: 0;
+        }
+        .edu-item .school {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .edu-item .detail {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .edu-item .year {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /*RIGHT COLUMN*/
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        /* Skill chips with icons */
+        .skillset {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.7rem;
+            margin-top: 0.2rem;
+        }
+        .skill-chip {
+            background: var(--bg-chip);
+            color: var(--text-primary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .skill-chip i {
+            color: var(--accent-complement);
+            font-size: 1rem;
+            width: 1.2rem;
+            text-align: center;
+        }
+        .skill-chip:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-complement);
+            transform: scale(1.05);
+        }
+
+        /* Qualifications */
+        .qual-list {
+            list-style: none;
+        }
+        .qual-list li {
+            background: var(--bg-card);
+            padding: 0.6rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            color: var(--text-primary);
+        }
+        .qual-list li:hover {
+            border-color: var(--accent-complement);
+            background: var(--bg-hover);
+        }
+        .qual-list li i {
+            color: var(--accent-complement);
+            width: 1.5rem;
+            font-size: 1rem;
+        }
+        .qual-list li .meta {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-left: auto;
+            background: var(--bg-chip);
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-light);
+        }
+
+        /*CTA SECTION*/
+        .cta-section {
+            background: linear-gradient(145deg, var(--bg-cta), var(--bg-cta-gradient));
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            animation: fadeInUp 1s ease-out both;
+            animation-delay: 0.5s;
+            transition: var(--transition);
+        }
+        .cta-section h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+        .cta-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /*FOOTER*/
+        .footer-note {
+            margin-top: 2.8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        /*RESPONSIVE*/
+        @media (max-width: 850px) {
+            .container { padding: 1.8rem; }
+            .two-col { grid-template-columns: 1fr; gap: 2rem; }
+            .profile-header { flex-direction: column; align-items: start; gap: 0.8rem; }
+            .contact-brief { align-items: flex-start; width: 100%; min-width: unset; }
+            .name-text h1 { font-size: 2.2rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .header-actions { width: 100%; }
+            .name-title { gap: 1rem; }
+            .profile-photo { width: 85px; height: 85px; border-width: 4px; }
+            .header-top-row { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+            .theme-toggle { align-self: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.2rem; }
+            .exp-head { flex-direction: column; align-items: start; gap: 0.2rem; }
+            .summary-card p { font-size: 1rem; }
+            .cta-section h2 { font-size: 1.4rem; }
+            .profile-photo { width: 70px; height: 70px; border-width: 3px; }
+            .name-text h1 { font-size: 1.8rem; }
+            .name-title { gap: 0.8rem; }
+            .contact-brief a, .contact-brief .location { font-size: 0.9rem; white-space: normal; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="profile-header fade-up">
+            <!-- Top row: toggle + contact (aligned properly) -->
+            <div class="header-top-row">
+                <!-- Theme toggle (left side) -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i> <span id="themeLabel">Dark</span>
+                </button>
+
+                <!-- Contact (right side, aligned) -->
+                <div class="contact-brief">
+                    <a href="tel:+27729774402"><i class="fas fa-phone-alt"></i> +27 72 977 4402</a>
+                    <a href="mailto:wian.sandenbergh.2005@gmail.com"><i class="fas fa-envelope"></i> wian.sandenbergh.2005@gmail.com</a>
+                    <div class="location"><i class="fas fa-map-pin"></i> 8 Seaboard Mews, Tableview, 7441</div>
+                </div>
+            </div>
+
+            <!-- Second row: photo + name + social + actions -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; margin-top: 0.5rem;">
+                <div class="name-title">
+                    <img src="assets/profile-photo.jpg" alt="Wian Sandenberg" class="profile-photo" />
+                    <div class="name-text">
+                        <h1>Wian <span>Sandenberg</span></h1>
+                        <div class="badge"><i class="fas fa-code" style="margin-right:0.4rem;"></i>Software Engineering</div>
+                        <div class="social-links">
+                            <a href="https://github.com/Unknown-S48" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/wian-sandenbergh-53b3b5320/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="assets/CV.pdf" class="btn-primary" download><i class="fas fa-download"></i> Download CV</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== SUMMARY ===== -->
+        <div class="summary-card fade-up delay-1">
+            <p><i class="fas fa-quote-left" style="color:var(--accent-complement); opacity:0.6; margin-right:0.5rem;"></i>
+                I am passionate about my career and excited by opportunities to learn, grow, and develop professionally.
+                I build on my knowledge while improving skills and confidence. As a caring and helpful individual,
+                I bring a thoughtful approach, strong attention to detail, and a genuine commitment to supporting
+                colleagues and clients. I enjoy collaborating and contributing to meaningful projects that create a positive impact.
+            </p>
+        </div>
+
+        <!-- ===== TWO-COLUMN ===== -->
+        <div class="two-col">
+
+            <!-- ===== LEFT COLUMN ===== -->
+            <div class="left-col">
+
+                <!-- ----- EXPERIENCE (NEWEST TO OLDEST) ----- -->
+                <div class="slide-left delay-2">
+                    <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
+
+                    <!-- 2026 - Code Loom (newest first) -->
+                    <div class="exp-item">
+                        <div class="exp-head">
+                            <h3>Software Engineering</h3>
+                            <span class="org">Code Loom (Integrated Learning)</span>
+                            <span class="date">2026</span>
+                        </div>
+                        <ul class="exp-desc">
+                            <li><i class="fas fa-circle"></i> Website testing &amp; debugging, documenting problems and writing scripts (NDA – details confidential).</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2025 - Stellenbosch University -->
+                    <div class="exp-item">
+                        <div class="exp-head">
+                            <h3>Software Engineering</h3>
+                            <span class="org">Stellenbosch University IT (Integrated Learning)</span>
+                            <span class="date">2025</span>
+                        </div>
+                        <ul class="exp-desc">
+                            <li><i class="fas fa-circle"></i> Developed a Voting web app with groups, real-time results, account creation and database.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2024 - OBIS Hermanus -->
+                    <div class="exp-item">
+                        <div class="exp-head">
+                            <h3>IT Specialist</h3>
+                            <span class="org">OBIS Hermanus (Integrated Learning)</span>
+                            <span class="date">2024</span>
+                        </div>
+                        <ul class="exp-desc">
+                            <li><i class="fas fa-circle"></i> Shadowed supervisor: POS installations, advertisement design &amp; posting, UI design for POS software.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2024 - CTU College (oldest last) -->
+                    <div class="exp-item">
+                        <div class="exp-head">
+                            <h3>Software Engineer / Developer</h3>
+                            <span class="org">CTU College (Integrated Learning)</span>
+                            <span class="date">2024</span>
+                        </div>
+                        <ul class="exp-desc">
+                            <li><i class="fas fa-circle"></i> Built a Property Sales Website as part of integrated learning.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ----- PROJECTS ----- -->
+                <div class="slide-left delay-3">
+                    <div class="section-title"><i class="fas fa-folder-open"></i> Featured Projects</div>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div class="project-icon"><i class="fas fa-home"></i></div>
+                            <h4>RealHome – Property Sales</h4>
+                            <p>Django-based real estate platform with listing management, search, and user auth.</p>
+                            <a href="https://github.com/Unknown-S48/RealHome" target="_blank" class="project-link">
+                                View on GitHub <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-icon"><i class="fas fa-vote-yea"></i></div>
+                            <h4>Voting Web Application</h4>
+                            <p>Real-time voting with groups, account creation, and live results dashboard.</p>
+                            <span class="project-link" style="opacity:0.7; cursor:default;">
+                                <i class="fas fa-lock"></i> Source private
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ----- EDUCATION ----- -->
+                                 <div class="slide-left delay-4">
+                    <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+                    <div class="edu-item">
+                        <span class="school">CTU College</span>
+                        <span class="detail">(In progress) · 2025 – 2026</span>
+                        <span class="year">Yet to be completed</span>
+                    </div>
+                                        <div class="edu-item">
+                        <span class="school">CTU College</span>
+                        <span class="detail">System Development Certificate</span>
+                        <span class="year">2024</span>
+                    </div>
+
+                    <div class="edu-item">
+                        <span class="school">Hermanus High School</span>
+                        <span class="detail">National Senior Certificate (Bachelor's Pass)</span>
+                        <span class="year">2019 – 2023</span>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- ===== RIGHT COLUMN ===== -->
+            <div class="right-col">
+
+                <!-- ----- SKILLS WITH ICONS ----- -->
+                <div class="slide-right delay-2">
+                    <div class="section-title"><i class="fas fa-cog"></i> Languages &amp; Tools</div>
+                    <div class="skillset">
+                        <span class="skill-chip"><i class="fab fa-html5"></i> HTML</span>
+                        <span class="skill-chip"><i class="fab fa-css3-alt"></i> CSS</span>
+                        <span class="skill-chip"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-chip"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-chip"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-chip"><i class="fas fa-code"></i> C#</span>
+                        <span class="skill-chip"><i class="fas fa-database"></i> SQL</span>
+                        <span class="skill-chip"><i class="fas fa-terminal"></i> Linux Terminal</span>
+                        <span class="skill-chip"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skill-chip"><i class="fas fa-globe"></i> Django</span>
+                    </div>
+                </div>
+
+                <!-- ----- QUALIFICATIONS ----- -->
+                <div class="slide-right delay-3">
+                    <div class="section-title"><i class="fas fa-certificate"></i> Qualifications</div>
+                    <ul class="qual-list">
+                        <li><i class="fas fa-certificate"></i> CompTIA A+ <span class="meta">certified</span></li>
+                        <li><i class="fab fa-python"></i> Udemy 100 Days of Code (Python) <span class="meta">2024</span></li>
+                    </ul>
+                    <div style="margin-top:0.8rem; background:var(--bg-il); border-radius:40px; padding:0.6rem 1.2rem; font-size:0.9rem; border:1px solid var(--border-color); color:var(--text-secondary); transition:var(--transition);">
+                        <i class="fas fa-flag-checkered" style="color:var(--accent-complement);"></i>
+                        <strong>CTU College 2025-2026</strong> · System Development (in progress)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CTA: HIRE ME (opens Gmail with email pre-filled) ===== -->
+        <div class="cta-section">
+            <h2>Let's Build Something Great Together</h2>
+            <p>I'm currently looking for new opportunities. Let's connect and discuss how I can contribute to your team.</p>
+            <div class="cta-buttons">
+                <!-- Hire Me button → opens Gmail with your email pre-filled -->
+                <a href="mailto:wian.sandenbergh.2005@gmail.com?subject=Job%20Opportunity%20-%20Wian%20Sandenberg&body=Hi%20Wian%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20potential%20opportunity.%0A%0AThank%20you%2C%0A%0A" class="btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Hire Me
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer-note">
+            <span><i class="far fa-file-code"></i> Portfolio · Wian Sandenberg</span>
+            <span><i class="far fa-calendar-alt"></i> 2026</span>
+        </div>
+
+    </div>
+
+    <!-- ===== THEME TOGGLE SCRIPT ===== -->
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const label = document.getElementById('themeLabel');
+        const icon = toggle.querySelector('i');
+
+        // Check saved preference
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateToggle(currentTheme);
+
+        toggle.addEventListener('click', () => {
+            const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateToggle(theme);
+        });
+
+        function updateToggle(theme) {
+            if (theme === 'light') {
+                label.textContent = 'Light';
+                icon.className = 'fas fa-sun';
+            } else {
+                label.textContent = 'Dark';
+                icon.className = 'fas fa-moon';
+            }
+        }
+    </script>
+
+</body>
+</html>
