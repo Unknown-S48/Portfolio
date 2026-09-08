@@ -46,5 +46,3 @@ I built this portfolio to showcase my skills and experience to potential employe
 # Running the Project
 1. Clone the repository
 2. Open the index.html in your browser
-# Project Structure 
-![alt text](image.png)
