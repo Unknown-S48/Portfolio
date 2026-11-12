@@ -3,7 +3,64 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wian Sandenbergh · Software Engineer</title>
+
+    <!-- PRIMARY SEO -->
+    <title>Wian Sandenbergh | Junior Software Engineer in Cape Town</title>
+    <meta name="description" content="Wian Sandenbergh is a junior full-stack software engineer in Cape Town, South Africa. Portfolio of Django, Vue 3, Python, Java and C# projects, plus REST API work." />
+    <meta name="keywords" content="Wian Sandenbergh, software engineer, junior developer, Cape Town, Django, Vue 3, Python, Java, C#, full-stack developer, portfolio" />
+    <meta name="author" content="Wian Sandenbergh" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://wiansandenbergh.co.za/" />
+
+    <!-- OPEN GRAPH (Facebook / WhatsApp / LinkedIn previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wian Sandenbergh" />
+    <meta property="og:title" content="Wian Sandenbergh | Junior Software Engineer in Cape Town" />
+    <meta property="og:description" content="Portfolio of a junior full-stack software engineer in Cape Town — Django, Vue 3, Python, Java, C# and REST APIs." />
+    <meta property="og:url" content="https://wiansandenbergh.co.za/" />
+    <meta property="og:image" content="https://wiansandenbergh.co.za/assets/profile-photo.jpg" />
+    <meta property="og:locale" content="en_ZA" />
+
+    <!-- TWITTER / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wian Sandenbergh | Junior Software Engineer in Cape Town" />
+    <meta name="twitter:description" content="Portfolio of a junior full-stack software engineer in Cape Town — Django, Vue 3, Python, Java, C# and REST APIs." />
+    <meta name="twitter:image" content="https://wiansandenbergh.co.za/assets/profile-photo.jpg" />
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- STRUCTURED DATA: Person + ProfilePage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Wian Sandenbergh",
+        "jobTitle": "Junior Software Engineer",
+        "url": "https://wiansandenbergh.co.za/",
+        "image": "https://wiansandenbergh.co.za/assets/profile-photo.jpg",
+        "email": "mailto:wian.sandenbergh.2005@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cape Town",
+          "addressRegion": "Western Cape",
+          "addressCountry": "ZA"
+        },
+        "sameAs": [
+          "https://github.com/Unknown-S48",
+          "https://www.linkedin.com/in/wian-sandenbergh-53b3b5320/"
+        ],
+        "knowsAbout": [
+          "Django", "Vue 3", "Python", "Java", "C#", "JavaScript",
+          "SQL", "PostgreSQL", "MySQL", "REST APIs", "Full-stack development"
+        ]
+      }
+    }
+    </script>
 
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -23,8 +80,8 @@
             <nav class="nav-links">
                 <a href="#work">Work</a>
                 <a href="#contact">Contact</a>
-                <a href="https://github.com/Unknown-S48" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/wian-sandenbergh-53b3b5320/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Unknown-S48" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/wian-sandenbergh-53b3b5320/" target="_blank" rel="noopener">LinkedIn</a>
             </nav>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
                 <i class="fas fa-moon"></i> <span id="themeLabel">Dark</span>
@@ -35,7 +92,7 @@
         <section class="hero fade-up">
             <div>
                 <div class="hero-eyebrow">Junior Software Engineer · Cape Town</div>
-                <h1>I build things <span>for the web</span> — and ship them.</h1>
+                <h1>Hi, I'm Wian Sandenbergh — I build things <span>for the web</span> and ship them.</h1>
                 <p>
                     Full-stack developer with 1000+ hours of hands-on work across Django, Vue 3,
                     Python, Java and C#. I care about clean APIs, working databases, and interfaces
@@ -50,7 +107,11 @@
                 </div>
             </div>
             <div class="hero-photo-wrap">
-                <img src="assets/profile-photo.jpg" alt="Wian Sandenbergh" class="profile-photo" />
+                <img src="assets/profile-photo.jpg"
+                     alt="Wian Sandenbergh, junior software engineer in Cape Town"
+                     class="profile-photo"
+                     width="320" height="320"
+                     loading="eager" />
             </div>
         </section>
 
@@ -84,7 +145,7 @@
                 <div class="project-grid">
                     <article class="project-card">
                         <div class="project-icon"><i class="fas fa-home"></i></div>
-                        <h3>RealHome — Property Sales Platform</h3>
+                        <h3 id="realhome">RealHome — Property Sales Platform</h3>
                         <p>
                             Django real-estate platform with listing management, search and user auth.
                             Built the models, views and templates end to end.
@@ -92,14 +153,14 @@
                         <div class="project-tags">
                             <span>Django</span><span>Python</span><span>SQL</span><span>Auth</span>
                         </div>
-                        <a href="https://github.com/Unknown-S48/RealHome" target="_blank" class="project-link">
+                        <a href="https://github.com/Unknown-S48/RealHome" target="_blank" rel="noopener" class="project-link">
                             View on GitHub <i class="fas fa-arrow-right"></i>
                         </a>
                     </article>
 
                     <article class="project-card">
                         <div class="project-icon"><i class="fas fa-vote-yea"></i></div>
-                        <h3>Real-Time Voting Web App</h3>
+                        <h3 id="real-time-voting">Real-Time Voting Web App</h3>
                         <p>
                             Users register, join groups and vote; results update live. Designed the
                             backend database architecture for secure data handling.
@@ -112,7 +173,7 @@
 
                     <article class="project-card">
                         <div class="project-icon"><i class="fas fa-plug"></i></div>
-                        <h3>REST API Work — BitBarn</h3>
+                        <h3 id="rest-api-bitbarn">REST API Work — BitBarn</h3>
                         <p>
                             Designing and testing secure RESTful APIs, tracing bottlenecks, and wiring
                             front-end interfaces to them.
@@ -296,13 +357,15 @@
         <section class="contact-strip fade-up delay-2" id="contact">
             <div>
                 <h2>Let's build something.</h2>
-                <p>I'm open to junior roles and interesting projects. Email is fastest.</p>
+                <p>I'm open to junior roles and interesting projects. Email is fastest:
+                    <a href="mailto:wian.sandenbergh.2005@gmail.com">wian.sandenbergh.2005@gmail.com</a>
+                </p>
             </div>
             <div class="contact-actions">
                 <a href="mailto:wian.sandenbergh.2005@gmail.com?subject=Hello%20Wian" class="btn-primary">
                     <i class="fas fa-paper-plane"></i> Email me
                 </a>
-                <a href="https://github.com/Unknown-S48" target="_blank" class="btn-outline">
+                <a href="https://github.com/Unknown-S48" target="_blank" rel="noopener" class="btn-outline">
                     <i class="fab fa-github"></i> GitHub
                 </a>
             </div>
@@ -310,7 +373,7 @@
 
         <!-- FOOTER -->
         <div class="footer-note">
-            <span>© 2026 Wian Sandenbergh</span>
+            <span>© <span id="year">2026</span> Wian Sandenbergh</span>
             <span>Built with HTML, CSS &amp; a little JavaScript · <a href="assets/Wian-Resume.pdf" download>CV</a></span>
         </div>
 
@@ -318,5 +381,9 @@
 
     <!-- Linking script.js -->
     <script src="script.js" defer></script>
+    <script>
+        // Keeps the copyright year current without touching script.js
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
